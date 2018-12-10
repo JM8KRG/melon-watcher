@@ -10,11 +10,20 @@
 - .env をいい感じに編集します
 
 ```bash
-yarn install or npm install
-node index.js (動作チェック)
+$ yarn install or npm install
+$ cp env.example .env
+$ node index.js
+```
+
+### 定期実行
+
+cron を用いて 30 分間隔で在庫をチェックする設定例です
+
+```bash
+# crontab -u bongo -e
+*/30 * * * * cd melon-watcher; /usr/bin/node /home/bongo/melon-watcher/index.js
 ```
 
 ### 注意事項
 
-- cron で定期実行してください
 - 実行間隔は最低 30 分以上取るようにしてください
