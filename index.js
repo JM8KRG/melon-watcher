@@ -16,8 +16,8 @@ request(target, (e, response, body) => {
       .text()
       .trim()
 
-    // 文字列:在庫あり or 残りわずか
-    if (stock !== '-') {
+    // この文字列が存在したらSlackに通知する
+    if (stock === '在庫あり' || stock === '残りわずか') {
       // slackに通知する
       const webhook = new IncomingWebhook(process.env.SLACK_WEBHOOK_URL)
       webhook.send('在庫状況：' + stock + '\nURL: ' + target, function (
